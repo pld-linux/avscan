@@ -8,6 +8,7 @@ Group:		X11/Applications
 Source0:	http://wolfsinger.com/~wolfpack/packages/%{name}-%{version}-openssl.tar.bz2
 # Source0-md5:	e8e76867fbdf4ddef9504b604db95667
 Patch0:		%{name}-verbose.patch
+Patch1:		%{name}-clamav.patch
 URL:		http://freecode.com/projects/avscan
 BuildRequires:	clamav-devel
 BuildRequires:	endeavour-devel >= 3
@@ -34,6 +35,7 @@ graficznym.
 %prep
 %setup -q -n %{name}-%{version}-openssl
 %patch0 -p1
+%patch1 -p1
 
 %build
 ./configure Linux

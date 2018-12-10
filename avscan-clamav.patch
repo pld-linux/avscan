@@ -1,0 +1,34 @@
+--- avscan-5.1.1-openssl/avscan/avs_avengine_scan.c.orig	2009-04-07 02:00:00.000000000 +0200
++++ avscan-5.1.1-openssl/avscan/avs_avengine_scan.c	2018-12-10 20:57:11.242064885 +0100
+@@ -750,6 +750,13 @@
+ 	guint options;
+ 	gchar *s;
+ 	const gchar *virus_name = NULL;
++#ifdef CL_SCAN_GENERAL_ALLMATCHES
++	struct cl_scan_options scan_options = {CL_SCAN_GENERAL_ALLMATCHES,
++		                               0x3FF, // where is the convenience alias for all?
++					       0,
++					       0,
++					       0};
++#endif
+ 
+ 	/* Interrupted? */
+ 	if(*stop_count > 0)
+@@ -833,10 +841,17 @@
+ 	/* Scan this file */
+ 	status = (gint)cl_scandesc(
+ 		fd,
++#ifdef CL_SCAN_GENERAL_ALLMATCHES
++		path,
++#endif
+ 		&virus_name,
+ 		&scanned_blocks,
+ 		d->engine,
++#ifdef CL_SCAN_GENERAL_ALLMATCHES
++		&scan_options
++#else
+ 		(unsigned int)options
++#endif
+ 	);
+ 
+ 	/* Close the file */
