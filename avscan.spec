@@ -2,7 +2,7 @@ Summary:	AntiVirus Scanner
 Summary(pl.UTF-8):	Skaner antywirusowy
 Name:		avscan
 Version:	5.1.1
-Release:	2
+Release:	3
 License:	GPL v2 with OpenSSL exception
 Group:		X11/Applications
 Source0:	http://wolfsinger.com/~wolfpack/packages/%{name}-%{version}-openssl.tar.bz2
