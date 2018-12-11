@@ -4,9 +4,9 @@
  	guint options;
  	gchar *s;
  	const gchar *virus_name = NULL;
-+#ifdef CL_SCAN_GENERAL_ALLMATCHES
-+	struct cl_scan_options scan_options = {CL_SCAN_GENERAL_ALLMATCHES,
-+		                               0x3FF, // where is the convenience alias for all?
++#ifdef CL_SCAN_GENERAL_HEURISTICS
++	struct cl_scan_options scan_options = {CL_SCAN_GENERAL_HEURISTICS,
++		                               ~0,
 +					       0,
 +					       0,
 +					       0};
@@ -18,13 +18,13 @@
  	/* Scan this file */
  	status = (gint)cl_scandesc(
  		fd,
-+#ifdef CL_SCAN_GENERAL_ALLMATCHES
++#ifdef CL_SCAN_GENERAL_HEURISTICS
 +		path,
 +#endif
  		&virus_name,
  		&scanned_blocks,
  		d->engine,
-+#ifdef CL_SCAN_GENERAL_ALLMATCHES
++#ifdef CL_SCAN_GENERAL_HEURISTICS
 +		&scan_options
 +#else
  		(unsigned int)options
